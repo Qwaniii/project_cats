@@ -20,8 +20,8 @@ class Api {
         return fetch(`${this.url}${this.name}/add`, {
             method: "POST",
             headers: {
-                "Accept": "aplication/json", 
-                "Content-Type": "aplication/json"
+                "Accept": "application/json", 
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(body),
         })
