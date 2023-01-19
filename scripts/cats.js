@@ -1,7 +1,7 @@
 const cats = [
     {
         "name": "Лара",
-        "img_link": "https://www.friendforpet.ru/api/sites/default/files/2021-09/167200DD-A44F-4845-8D4D-ACCFC180165A.jpeg",
+        "img_link": "https://www.friendforpet.ru/api/sites/default/files/2021-09/167200DD-A44F-4845-8D4D-ACCFC180165A.jpg",
         "age": 8,
         "rate": 7,
         "favourite": false,

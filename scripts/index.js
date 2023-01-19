@@ -13,7 +13,7 @@ const updCards = function(data) {
     main.innerHTML = "";
     data.forEach(function(cat) {
         if(cat.id) {
-            let card = `<div class="${cat.favourite ? "card like" : "card"}" style="background-image: url(${cat.img_link || "/images/cat.jpeg"})">
+            let card = `<div class="${cat.favourite ? "card like" : "card"}" style="background-image: url(${cat.img_link || "/img/cat.jpeg"})">
                 <span>${cat.name}</span>
             </div>`;
             main.innerHTML += card;
@@ -21,12 +21,16 @@ const updCards = function(data) {
     });
     let cards = document.querySelectorAll(".card");
     for (i = 0; i < cards.length; i++) {
-    const width = cards[i].offsetWidth;
-    cards[i].style.height = width * 0.6 + "px";
-}
+        const width = cards[i].offsetWidth;
+        cards[i].style.height = width * 0.6 + "px";
+    }
 };
 
-
+// let cards = document.querySelectorAll(".card");
+// for (i = 0; i < cards.length; i++) {
+//     const width = cards[i].offsetWidth;
+//     cards[i].style.height = width * 0.6 + "px";
+// }
 
 
 
@@ -54,6 +58,19 @@ closePopupForm.addEventListener("click", () => {
 
 const api = new Api("qwaniii");
 
+
+const getCats = function(api) {
+    api.getCats()
+        .then(res => res.json())
+        .then(data => {
+            if (data.message === "ok") {
+                updCards(data.data)
+            }
+        })
+}
+
+getCats(api);
+
 let form = document.forms[0];
 
 form.img_link.addEventListener("change", (e) => {
@@ -68,7 +85,7 @@ form.img_link.addEventListener("input", (e) => {
 form.addEventListener("submit", e => {
     e.preventDefault();
     let body = {};
-    for (i = 0; i  < form.elements.length; i++) {
+    for (let i = 0; i  < form.elements.length; i++) {
         let inp = form.elements[i];
         if (inp.type === "checkbox") {
             body[inp.name] = inp.checked;            
@@ -91,21 +108,10 @@ form.addEventListener("submit", e => {
                 console.log(data);
             }
         })
-    getCats(api);
+    
 });
 
 
-const getCats = function(api) {
-    api.getCats()
-        .then(res => res.json())
-        .then(data => {
-            if (data.message === "ok") {
-                updCards(data.data)
-            }
-        })
-}
-
-getCats(api);
 
 
 
